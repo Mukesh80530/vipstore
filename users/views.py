@@ -31,9 +31,10 @@ def profile(request):
             return redirect('profile')
 
     else:
+        print(request.user.profile)
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
-
+        print(p_form.__dict__)
     context = {
         'u_form': u_form,
         'p_form': p_form

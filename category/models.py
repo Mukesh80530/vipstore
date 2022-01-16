@@ -2,16 +2,23 @@ from PIL import Image
 from django.db import models
 
 SUB_CATEGORY = (
-    ("101", "Allergies"),
-    ("102", "Birth Control"),
-    ("103", "Common Cold"),
-    ("104", "Chronic Pain"),
-    ("105", "Digestive Health"),
-    ("106", "Eczema"),
-    ("107", "Heart Disease"),
-    ("108", "Oral Health"),
-    ("109", "Head"),
-    ("110", "forehead"),
+    ("101", "Addiction"),
+    ("102", "Beauty"),
+    ("103", "Dental Health"),
+    ("104", "Dietary Supplements"),
+    ("105", "Diets & Weight Loss"),
+    ("106", "Exercise & Fitness"),
+    ("107", "General"),
+    ("108", "Meditation"),
+    ("109", "Men’s Health"),
+    ("110", "Mental Health"),
+    ("111", "Nutrition"),
+    ("112", "Remedies"),
+    ("113", "Sleep and Dreams"),
+    ("114", "Spiritual Health"),
+    ("115", "Strength Training"),
+    ("116", "Women’s Health"),
+    ("117", "Yoga"),
 )
 
 
@@ -54,6 +61,7 @@ class Product(models.Model):
     description = models.CharField(max_length=255, null=True, blank=True)
     image = models.ImageField(upload_to='product_images')
     url = models.URLField(max_length=255)
+    affiliate_link = models.URLField(max_length=255)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 

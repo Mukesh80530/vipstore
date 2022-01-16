@@ -284,72 +284,87 @@
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{% url 'sub-category' %}?cat_id=101">
-                        <i class="bi bi-circle"></i><span>Allergies</span>
+                        <i class="bi bi-circle"></i><span>Addiction</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Birth Control</span>
+                    <a href="{% url 'sub-category' %}?cat_id=102">
+                        <i class="bi bi-circle"></i><span>Beauty</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Common Cold</span>
+                    <a href="{% url 'sub-category' %}?cat_id=103">
+                        <i class="bi bi-circle"></i><span>Dental Health</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Chronic Pain</span>
+                    <a href="{% url 'sub-category' %}?cat_id=104">
+                        <i class="bi bi-circle"></i><span>Dietary Supplements</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Digestive Health</span>
+                    <a href="{% url 'sub-category' %}?cat_id=105">
+                        <i class="bi bi-circle"></i><span>Diets & Weight Loss</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Eczema</span>
+                    <a href="{% url 'sub-category' %}?cat_id=106">
+                        <i class="bi bi-circle"></i><span>Exercise & Fitness</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Heart Disease</span>
+                    <a href="{% url 'sub-category' %}?cat_id=107">
+                        <i class="bi bi-circle"></i><span>General</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Oral Health</span>
+                    <a href="{% url 'sub-category' %}?cat_id=108">
+                        <i class="bi bi-circle"></i><span>Meditation</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Skin Health</span>
+                    <a href="{% url 'sub-category' %}?cat_id=109">
+                        <i class="bi bi-circle"></i><span>Men’s Health</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Thyroid</span>
+                    <a href="{% url 'sub-category' %}?cat_id=110">
+                        <i class="bi bi-circle"></i><span>Mental Health</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Breast Cancer</span>
+                    <a href="{% url 'sub-category' %}?cat_id=111">
+                        <i class="bi bi-circle"></i><span>Nutrition</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Eye Health</span>
+                    <a href="{% url 'sub-category' %}?cat_id=112">
+                        <i class="bi bi-circle"></i><span>Remedies</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Pregnancy</span>
+                    <a href="{% url 'sub-category' %}?cat_id=113">
+                        <i class="bi bi-circle"></i><span>Sleep and Dreams</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'sub-category' %}">
-                        <i class="bi bi-circle"></i><span>Sexual Health</span>
+                    <a href="{% url 'sub-category' %}?cat_id=114">
+                        <i class="bi bi-circle"></i><span>Spiritual Health</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'sub-category' %}?cat_id=115">
+                        <i class="bi bi-circle"></i><span>Strength Training</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'sub-category' %}?cat_id=116">
+                        <i class="bi bi-circle"></i><span>Women’s Health</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'sub-category' %}?cat_id=117">
+                        <i class="bi bi-circle"></i><span>Yoga</span>
                     </a>
                 </li>
             </ul>
@@ -544,11 +559,11 @@
 
     <section class="section dashboard">
         {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
-        </div>
-        {% endfor %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
         {% endif %}
 
         {% block content %}{% endblock %}
