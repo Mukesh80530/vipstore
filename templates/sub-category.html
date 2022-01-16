@@ -2,55 +2,66 @@
 
 {% block content %}
 
-<!--        {% for product in page_obj %}-->
-<!--            <main role="main" class="container">-->
-<!--                <div class="row">-->
-<!--                    <article class="media content-section">-->
-<!--                        <img class="rounded-circle article-img" src="{{ product.image.url }}">-->
-<!--                        <div class="media-body">-->
-<!--                            <div class="article-metadata">-->
-<!--                                <small class="text-muted">{{ product.date_modified|date:"F d, Y" }}</small>-->
-<!--                            </div>-->
-<!--                            <h2><a class="article-title" href="#">{{ product.title }}</a></h2>-->
-<!--                            <p class="article-content">{{ product.description }}</p>-->
-<!--                        </div>-->
-<!--                    </article>-->
-<!--                </div>-->
-<!--            </main>-->
-<!--        {% endfor %}-->
-
-        {% for product in page_obj %}
-            <article class="media content-section">
-              <img class="rounded-circle article-img" src="{{ product.image.url }}">
-              <div class="media-body">
+<div class="container">
+    {% for product in page_obj %}
+    <div class="row">
+        <div class="col-sm-4">
+            <img class="rounded-circle article-img" src="{{ product.image.url }}">
+            <div class="media-body">
                 <div class="article-metadata">
-                  <a class="mr-2" href="{{ product.url }}">{{ product.title }}</a>
-                  <small class="text-muted">{{ product.date_modified|date:"F d, Y" }}</small>
+                    <a class="mr-2" href="{{ product.url }}">{{ product.title }}</a>
+                    <small class="text-muted">{{ product.date_modified|date:"F d, Y" }}</small>
                 </div>
-                <h2><a class="article-title" href="{{ product.url }}">{{ product.name }}</a></h2>
-                <p class="article-content">{{ product.description }}</p>
-              </div>
-            </article>
-        {% endfor %}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <h2><a class="article-title" href="{{ product.url }}">{{ product.name }}</a></h2>
+            <p class="article-content">{{ product.description }}</p>
+            <div>
+                <input type="text" value="{{product.affiliate_link}}" id="myInput" readonly disabled>
+                <button onclick="myFunction()">Copy Affiliate Link</button>
+            </div>
+        </div>
+        <hr>
+    </div>
+    {% endfor %}
 
 
-        {% if page_obj.has_previous %}
-            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        {% endif %}
+    {% if page_obj.has_previous %}
+    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
 
-        {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-            {% endif %}
-        {% endfor %}
+    {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% endif %}
+    {% endfor %}
 
-        {% if page_obj.has_next %}
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-        {% endif %}
+    {% if page_obj.has_next %}
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif %}
+</div>
+
+<script>
+            function myFunction() {
+              /* Get the text field */
+              var copyText = document.getElementById("myInput");
+
+              /* Select the text field */
+              copyText.select();
+              copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+              /* Copy the text inside the text field */
+              navigator.clipboard.writeText(copyText.value);
+
+              /* Alert the copied text
+              alert("Copied the text: " + copyText.value); */
+            }
+</script>
 
 {% endblock %}
 
