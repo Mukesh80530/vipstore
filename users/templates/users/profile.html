@@ -2,25 +2,71 @@
 {% load crispy_forms_tags %}
 
 
-{% block content %}
-<div class="content-section">
-    <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-            <h2 class="account-heading">{{ user.username }}</h2>
-            <p class="text-secondary">{{ user.email }}</p>
+<div class="container">
+    {% block content %}
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class="media">
+                <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+                <div class="media-body">
+                    <h2 class="account-heading">{{ user.username }}</h2>
+                    <p class="text-secondary">{{ user.email }}</p>
+                </div>
+            </div>
+            <form enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Profile Info</legend>
+                    {{ u_form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Update</button>
+                </div>
+            </form>
         </div>
+
+        <div class="col-sm-4">
+            <form enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Account Details</legend>
+                    {{ p_form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-4">
+            <legend class="border-bottom mb-4">Calculator</legend>
+            <select id="cars" name="cars" onclick="searchFunction()">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+            </select>
+        </div>
+
     </div>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Profile Info</legend>
-            {{ u_form|crispy }}
-            {{ p_form|crispy }}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Update</button>
-        </div>
-    </form>
+    {% endblock content %}
+
+    <script>
+        function searchFunction() {
+        alert('hello');
+        var range = [{"name":"my Name","id":12,"type":"car owner"},
+            {"name":"my Name2","id":13,"type":"car owner2"},
+            {"name":"my Name4","id":14,"type":"car owner3"},
+            {"name":"my Name4","id":15,"type":"car owner5"}]
+        var results = [];
+        var searchField = "name";
+        var searchVal = "my Name";
+        for (var i=0 ; i < obj.list.length ; i++)
+        {
+            if (obj.list[i][searchField] == searchVal) {
+                results.push(obj.list[i]);
+            }
+        };
+    </script>
 </div>
-{% endblock content %}
