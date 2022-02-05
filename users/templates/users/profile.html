@@ -41,32 +41,57 @@
 
         <div class="col-sm-4">
             <legend class="border-bottom mb-4">Calculator</legend>
-            <select id="cars" name="cars" onclick="searchFunction()">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
+            <select id="sel" onchange="show(this.value)">
+                <option value="">-- Select --</option>
             </select>
+            <hr>
+            <p id="msg"></p>
         </div>
+
+        <script>
+
+                var ranges = [
+                    {Range: "5K-10K", Value: "3000"},
+                    {Range: "10K-20K", Value: "4000"},
+                    {Range: "20K-30K", Value: "5000"},
+                    {Range: "30K-40K", Value: "6000"},
+                    {Range: "40K-50K", Value: "7000"},
+                    {Range: "50K-60K", Value: "7500"},
+                    {Range: "60K-70K", Value: "8000"},
+                    {Range: "70K-80K", Value: "8500"},
+                    {Range: "80K-90K", Value: "9000"},
+                    {Range: "90K-100K", Value: "9500"}
+                ];
+
+
+                function populateSelect() {
+                  var ele = document.getElementById('sel');
+                  ranges.forEach(function(b) {
+                    ele.innerHTML += '<option value="' + b.Value + '">' + b['Range'] + '</option>';
+                  })
+
+                }
+
+                function show(id) {
+                  // GET THE SELECTED VALUE FROM <select> ELEMENT AND SHOW IT.
+                  var msg = document.getElementById('msg');
+                  if (!id) {
+                    msg.innerHTML = 'None selected';
+
+                  } else {
+                    for (var i = 0; i < ranges.length; i++) {
+                      if (id === ranges[i].Value) {
+                        msg.innerHTML = "Total Pay: " + " " + ranges[i].Value;
+                        break;
+                      }
+                    }
+                  }
+                }
+                populateSelect()
+
+        </script>
 
     </div>
     {% endblock content %}
 
-    <script>
-        function searchFunction() {
-        alert('hello');
-        var range = [{"name":"my Name","id":12,"type":"car owner"},
-            {"name":"my Name2","id":13,"type":"car owner2"},
-            {"name":"my Name4","id":14,"type":"car owner3"},
-            {"name":"my Name4","id":15,"type":"car owner5"}]
-        var results = [];
-        var searchField = "name";
-        var searchVal = "my Name";
-        for (var i=0 ; i < obj.list.length ; i++)
-        {
-            if (obj.list[i][searchField] == searchVal) {
-                results.push(obj.list[i]);
-            }
-        };
-    </script>
 </div>
