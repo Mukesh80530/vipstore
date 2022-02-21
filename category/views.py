@@ -18,7 +18,7 @@ def category(request):
     product_list = Product.objects.filter(sub_category=sub_cat_id)
     if len(product_list):
 
-        paginator = Paginator(product_list, 5)
+        paginator = Paginator(product_list, 10)
 
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
